@@ -135,7 +135,7 @@ function renderRowWaitDetail(awaitTime, awaitFee, tblBody) {
   var tdWaitFee = document.createElement("td");
   var tdBill = document.createElement("td");
 
-  tdMinTitle.innerHTML = " Thời gian chờ: ";
+  tdMinTitle.innerHTML = " Thời gian chờ ";
   tdMin.innerHTML = awaitTime + " phút";
   tdWaitFee.innerHTML = awaitFee;
   tdBill.innerHTML = awaitPrice;
@@ -157,7 +157,10 @@ function renderRowTotal(total, tblBody) {
   var tdTotal = document.createElement("td");
 
   tdTotalTitle.innerHTML = " Tổng thanh toán: ";
-  tdTotal.innerHTML = total;
+  tdTotal.innerHTML = total.toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
 
   trTotal.appendChild(tdTotalTitle);
   trTotal.appendChild(tdTotal);
@@ -191,21 +194,27 @@ function receiptPrint(
 }
 
 function printBill() {
+  // Update Price
+  var totalBill = totalBillUber();
+  totalBill = totalBill.toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+  document.querySelector("#xuatTien").innerHTML = totalBill;
   // Check Error
   var errorKM = document.getElementById("soKM").value;
   var errorTime = document.getElementById("thoiGianCho").value;
-
   if (
     errorKM.match(/^[0-9.,\b]+$/) == null ||
     errorTime.match(/^[0-9.,\b]+$/) == null
   ) {
     alert("Vui long nhap dung so KM va thoi gian cho");
+    $(".modal").removeClass("toggled");
   }
 
   // Open Popup
   $(".modal").toggleClass("toggled");
   $("#overlay").toggleClass("showOverLay");
-  $("html").css("overflow-y", "hidden");
 
   //  End Popup
 
@@ -263,5 +272,4 @@ function getData() {
 function closeBtn() {
   $("#overlay").removeClass("showOverLay");
   $(".modal").removeClass("toggled");
-  $("html").css("overflow-y", "auto");
 }

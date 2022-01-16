@@ -594,7 +594,15 @@ input[type=radio]:checked~label {
 
 
 /*popup Bill*/
+.modal-header .modal-title {
+  text-transform: uppercase !important;
+  font-weight: bold;
+  color: #c59a4b;
+}
 
+.modal-header button {
+  font-size: 30px;
+}
 
 .modal__header-content>div {
   width: 50%;
@@ -664,6 +672,11 @@ hr {
   position: relative;
   width: auto;
   height: 0px;
+}
+
+.modal-date h6 {
+  padding-left: 20px;
+  font-style: italic;
 }
 
 /*  Toggled */

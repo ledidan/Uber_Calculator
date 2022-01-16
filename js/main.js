@@ -150,7 +150,7 @@ function renderRowWaitDetail(awaitTime, awaitFee, tblBody) {
 
 function renderRowTotal(total, tblBody) {
   var trTotal = document.createElement("tr");
-  trTotal.className = "alert alert-success";
+  trTotal.className = "alert alert-warning";
 
   var tdTotalTitle = document.createElement("td");
   tdTotalTitle.setAttribute("colspan", 3);
@@ -212,6 +212,15 @@ function printBill() {
     $(".modal").removeClass("toggled");
   }
 
+  // showDate Publish Bill
+  var today = new Date();
+  var date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  var time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date + " - " + time;
+  document.getElementById("newDate").innerHTML = "Thời gian:" + " " + dateTime;
+
   // Open Popup
   $(".modal").toggleClass("toggled");
   $("#overlay").toggleClass("showOverLay");
@@ -221,7 +230,6 @@ function printBill() {
   var result = getData();
   var totalBill = totalBillUber();
   var carPick = carCheck();
-
   switch (carPick) {
     case "uberX":
       receiptPrint(

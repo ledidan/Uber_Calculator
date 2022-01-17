@@ -76,7 +76,7 @@ function totalBillUber() {
       thisBill = priceBill(soKM, thoiGianCho, waitUberBlack, arrUberBlack);
       break;
     default:
-      alert("Vui long chon loai xe muon di chuyen");
+      alert("Vui lòng chọn loại xe quý khách muốn đặt");
   }
   return thisBill;
 }
@@ -84,15 +84,6 @@ function totalBillUber() {
 // Calculate Result
 
 function calculateBill() {
-  var errorKM = document.getElementById("soKM").value;
-  var errorTime = document.getElementById("thoiGianCho").value;
-
-  if (
-    errorKM.match(/^[0-9.,\b]+$/) == null ||
-    errorTime.match(/^[0-9.,\b]+$/) == null
-  ) {
-    alert("Vui long nhap dung so KM va thoi gian cho");
-  }
   var totalBill = totalBillUber();
   totalBill = totalBill.toLocaleString("vi-VN", {
     style: "currency",
@@ -200,17 +191,8 @@ function printBill() {
     style: "currency",
     currency: "VND",
   });
+
   document.querySelector("#xuatTien").innerHTML = totalBill;
-  // Check Error
-  var errorKM = document.getElementById("soKM").value;
-  var errorTime = document.getElementById("thoiGianCho").value;
-  if (
-    errorKM.match(/^[0-9.,\b]+$/) == null ||
-    errorTime.match(/^[0-9.,\b]+$/) == null
-  ) {
-    alert("Vui long nhap dung so KM va thoi gian cho");
-    $(".modal").removeClass("toggled");
-  }
 
   // showDate Publish Bill
   var today = new Date();
@@ -262,7 +244,7 @@ function printBill() {
       );
       break;
     default:
-      alert("Vui long chon loai xe muon di chuyen");
+      alert("Vui lòng chọn loại xe quý khách muốn đặt");
   }
 }
 
